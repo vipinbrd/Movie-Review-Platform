@@ -95,7 +95,32 @@ More details in the [Postman Collection](https://documenter.getpostman.com/view/
 https://github.com/vipinbrd/Movie-Review-Platform.git
 cd movie-review-platform
 
-# Setup database credentials in src/main/resources/application.properties
+# Setup database credentials and other info in src/main/resources/application.properties
+spring.application.name=movie_review_platform
+
+# SERVER
+
+server.port=8080
+
+# DATABASE CONFIGURATION
+
+spring.datasource.url=jdbc:mysql://localhost:3306/moviereview
+spring.datasource.username=dbusername
+spring.datasource.password=dbpassword
+
+# JPA / HIBERNATE CONFIG
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+
+# JWT CONFIGURATION
+jwt.secret=secretkey
+jwt.expiration=3600000
+
+
+
+
 
 # Build and run
 mvn clean install
