@@ -1,5 +1,12 @@
 package com.moviereview.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.moviereview.dto.MovieRequest;
 import com.moviereview.dto.MovieResponse;
 import com.moviereview.entity.Movie;
@@ -7,10 +14,6 @@ import com.moviereview.exception.MovieNotFoundException;
 import com.moviereview.repository.MovieRepository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.*;
-import org.springframework.stereotype.Service;
-
-import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
@@ -64,4 +67,12 @@ public class MovieServiceImpl implements MovieService {
                 .posterUrl(req.getPosterUrl())
                 .build();
     }
+
+	@Override
+	@Transactional
+	public void deleteMovie(Long id) {
+	    Movie movie = movieRepo.findById(id)
+	            .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
+	    movieRepo.delete(movie);
+	}
 }

@@ -8,4 +8,6 @@ public interface MovieService {
     Page<MovieResponse> getAllMovies(int page, int size, String sortBy);
     MovieResponse getMovieById(Long id);
     MovieResponse addMovie(MovieRequest movieRequest);
+    void deleteMovie(Long id);
+
 }
